@@ -1,0 +1,143 @@
+.top{
+	width: 1300px;
+	height: 300px;
+}
+.bottom{
+	margin-top: 20px;
+	width: 1000px;
+	height: 500px;
+}
+.left{
+	margin-left: 40px;
+	width: 400px;
+	height: 300px;
+	border:2px solid black;
+}
+.right{
+	width: 400px;
+	height: 300px;
+	border:2px solid black;
+	float: left;
+}
+.giua{
+	margin-left: 25px;
+	width: 1000px;
+	height: 100px;
+	background-color:#BBBBBB;
+}
+.gt1{
+	margin-left: 250px;
+  width: 100px;
+  height: 200px;
+  border:5px solid red;
+   background-color: black;
+  margin-top: 20px;
+}
+.gt2{
+	
+  width: 100px;
+  height: 200px;
+  border:5px solid red;
+   background-color: black;
+  margin-top: 20px;
+}
+.do{
+  margin:30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid red;
+  background-color: red;
+}
+.xanh{
+  margin:30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid green;
+  background-color: green;
+}
+.vang{
+  margin:30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid yellow;
+  background-color: yellow;
+}
+.number{
+  margin-left: 250px;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+
+}
+.number1{
+ 
+  width: 100px;
+  height: 50px;
+  background-color: black;
+
+}
+.number p{
+  font-weight: 5px;
+  font-size: 30px;
+  color: green;
+  
+  margin-left: 10px;
+}
+.number1 p{
+  font-weight: 5px;
+  font-size: 30px;
+  color: green;
+  
+  margin-left: 30px;
+}
+/*.cot{
+  width: 20px;
+  height: 40px;
+  border:1px solid black;
+  margin-left: 10px;
+  background-color: black;
+}*/
+.center{
+	width: 200px;
+	height:300px;
+	background-color:#BBBBBB;
+}
+.vach{
+	width: 10px;
+	height: 30px;
+	margin: 25px;
+	background-color: white;
+}
+.vach1{
+	width: 30px;
+	height: 10px;
+	background-color: white;
+	margin-left: 33px;
+	margin-top: 40px;
+	float: left;
+}
+.vach3{
+	width: 30px;
+	height: 10px;
+	background-color: white;
+	margin-left: 250px;
+	margin-top: 40px;
+	float: left;
+}
+.vach2{
+	width: 30px;
+	height: 10px;
+	background-color: white;
+	margin-left: 30px;
+	margin-top: 40px;
+	float: left;
+}
+button{
+	margin-left: 50px;
+  margin-top: 10px;
+  width: 100px;
+  height: 50px;
+}

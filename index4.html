@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mang cam bien</title>
+	<link rel="stylesheet" type="text/css" href="index4.css">
+	<link rel="shortcut icon" type="img/png" href="icon1.png">
+	<script>
+
+window.onload = function () {
+
+var dps = [];
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	title :{
+		text: "Theo dõi nhiệt độ"
+	},
+	axisY: {
+		includeZero: false
+	},
+	data: [{
+		type: "spline",
+		markerSize: 0,
+		dataPoints: dps 
+	}]
+});
+
+var xVal = 0;
+var yVal = 100;
+var updateInterval = 1000;
+var dataLength = 50; // number of dataPoints visible at any point
+
+var updateChart = function (count) {
+	count = count || 1;
+	// count is number of times loop runs to generate random dataPoints.
+	for (var j = 0; j < count; j++) {	
+		yVal = yVal + Math.round(5 + Math.random() *(-5-5));
+		dps.push({
+			x: xVal,
+			y: yVal
+		});
+		xVal++;
+	}
+	if (dps.length > dataLength) {
+		dps.shift();
+	}
+	chart.render();
+};
+
+updateChart(dataLength); 
+setInterval(function(){ updateChart() }, updateInterval); 
+
+}
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<center>
+<div class="container main">
+	<div class="row">
+
+	<div class="col-md-12 text">
+		<h2>Mạng Cảm Biến</h2> 
+	</div>
+	</div>
+	<!--top-->
+	<div class="row top">
+		<div class="col-md-3 img"><img src="hn1.jpg" width="280px" height="170px"></div>
+		<div class="col-md-3 temp">
+			<div class="temp1"><img src="" id="temp1"></div>
+			<div id="temp2"></div>
+		</div>
+		<div class="col-md-3 hum">
+			<div class="hum1"><img src="" id="hum1"></div>
+			<div id="hum2"></div>
+		</div>
+		<div class="col-md-3 light">
+			<div id="light1"><img src="img/as1.png"></div>
+			<div id="light2"></div>
+		</div>
+	</div>
+	<!--End top-->
+
+	<!--content-->
+	<div class="row content">
+		<div class="col-md-7 left">
+			<div id="chartContainer" style="height: 300px;"></div>
+			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+		</div>
+		<div class="col-md-5 right">
+			<div class="on"><button type="button" id="on" onclick="On()">ON</button></div>
+			<div class="off"><button type="button" id="off" onclick="Off()">OFF</button></div>
+			<div class="control">
+				<input class="slider" type="range" name="" min="0" max="10">
+			</div>
+		</div>
+	</div>
+	<!--End content-->
+</div>
+</center>
+</body>
+<script type="text/javascript">
+	//Nhiệt độ 
+	var min=0;
+	var max =45;
+	var temp=Math.floor(Math.random() * (max-min)) + min;
+
+	if (temp>30) {
+		document.getElementById('temp1').src="img/1.png";
+		document.getElementById('temp2').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('temp2').style.color="red";
+	}
+	if (temp<40 && temp>30) {
+		document.getElementById('temp1').src="img/6.png";
+		document.getElementById('temp2').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('temp2').style.color="red";
+	}
+	if (temp>20 && temp<30) {
+		document.getElementById('temp1').src="img/3.png";
+		document.getElementById('temp2').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('temp2').style.color="red";
+	}
+	if (temp<20) {
+		document.getElementById('temp1').src="img/2.png";
+		document.getElementById('temp2').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('temp2').style.color="red";
+	}
+	// độ ẩm 
+	var ma=30;
+	var mi = 90;
+	var hum=Math.floor(Math.random() * (ma-mi))+mi;
+
+	if (hum<=90 && hum >70) {
+		document.getElementById('hum1').src="img/9.png";
+		document.getElementById('hum2').innerHTML=hum + " " + "%";
+		document.getElementById('hum2').style.color="red";
+	}
+	if (hum<=70 && hum>50) {
+		document.getElementById('hum1').src="img/8.png";
+		document.getElementById('hum2').innerHTML=hum + " " + "%";
+		document.getElementById('hum2').style.color="red";
+	}
+	if (hum<=50 && hum>30) {
+		document.getElementById('hum1').src="img/10.png";
+		document.getElementById('hum2').innerHTML=hum + " " + "%";
+		document.getElementById('hum2').style.color="red";
+	}
+
+	//ánh sáng 
+	var m=20;
+	var minn=60;
+	var light=Math.floor(Math.random()*(m-minn)+minn);
+
+	if (light<=60 && light >40) {
+		
+		document.getElementById('light2').innerHTML=light;
+		document.getElementById('light2').style.color="blue";
+	}
+	if (light<=40 && light>30) {
+		document.getElementById('light2').innerHTML=light;
+		document.getElementById('light2').style.color="blue";
+	}
+	if (light<=30 && light>20) {
+		document.getElementById('light2').innerHTML=light;
+		document.getElementById('light2').style.color="blue";
+	}
+	//nút bấm 
+	function Off()
+	{
+		document.getElementById('off').style.background="red";
+		document.getElementById('on').style.background="#336633";
+	}
+	function On()
+	{
+		document.getElementById('on').style.background="blue";
+		document.getElementById('off').style.background="#336633";
+	}
+		
+</script>
+</html>

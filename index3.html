@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mang cam bien</title>
+	<link rel="stylesheet" type="text/css" href="index3.css">
+	<link rel="shortcut icon" type="img/png" href="icon1.png">
+	<script>
+window.onload = function () {
+
+var dps = [];
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	title :{
+		text: "Theo dõi nhiệt độ"
+	},
+	axisY: {
+		includeZero: false
+	},
+	data: [{
+		type: "spline",
+		markerSize: 0,
+		dataPoints: dps 
+	}]
+});
+
+var xVal = 0;
+var yVal = 100;
+var updateInterval = 1000;
+var dataLength = 50; // number of dataPoints visible at any point
+
+var updateChart = function (count) {
+	count = count || 1;
+	// count is number of times loop runs to generate random dataPoints.
+	for (var j = 0; j < count; j++) {	
+		yVal = yVal + Math.round(5 + Math.random() *(-5-5));
+		dps.push({
+			x: xVal,
+			y: yVal
+		});
+		xVal++;
+	}
+	if (dps.length > dataLength) {
+		dps.shift();
+	}
+	chart.render();
+};
+
+updateChart(dataLength); 
+setInterval(function(){ updateChart() }, updateInterval); 
+
+}
+</script>
+</head>
+<body>
+	<center>
+<div class="main">
+	<div class="text">
+		Mạng Cảm Biến 
+	</div>
+	<!--top-->
+	<div class="top">
+		<ul>
+			<li class="tem" id="tem1">
+				<span class="tt" id="nd">Nhiệt Độ</span><br/>
+				<p id="id1"></p>
+			</li>
+			<li class="hum" id="hum1">
+				<span class="tt" id="da">Độ Ẩm </span><br/>
+				<p id="id2"></p>
+			</li>
+			<li class="as" id="as1">
+				<span class="tt" id="light">Ánh Sáng </span><br/>
+				<p id="id3"></p>
+			</li>
+		</ul>
+	</div>
+	<!--End top-->
+
+	<!--content-->
+	<div class="content">
+		<div class="left">
+			<div id="chartContainer" style="height: 400px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+		</div>
+		<div class="right">
+			<div class="on"><button type="button" id="on" onclick="On()">ON</button></div>
+			<div class="off"><button type="button" id="off" onclick="Off()">OFF</button></div>
+			<div class="control">
+				<input class="slider" type="range" name="" min="0" max="10">
+			</div>
+		</div>
+	</div>
+	<!--End content-->
+</div>
+</center>
+</body>
+<script type="text/javascript">
+	//Nhiệt độ 
+	var min=0;
+	var max =45;
+	var temp=Math.floor(Math.random() * (max-min)) + min;
+
+	if (temp>30) {
+		document.getElementById('tem1').style.background="red";
+		document.getElementById('nd').style.color="white";
+		document.getElementById('id1').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('id1').style.color="white";
+	}
+	if (temp<40 && temp>30) {
+		document.getElementById('tem1').style.background="#FF9900";
+		document.getElementById('nd').style.color="white";
+		document.getElementById('id1').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('id1').style.color="white";
+	}
+	if (temp>20 && temp<30) {
+		document.getElementById('tem1').style.background="#FFFF33";
+		document.getElementById('nd').style.color="#330000";
+		document.getElementById('id1').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('id1').style.color="#330000";
+	}
+	if (temp<20) {
+		document.getElementById('tem1').style.background="#FFFFFF";
+		document.getElementById('nd').style.color="#000000";
+		document.getElementById('id1').innerHTML=temp+" "+"Độ" ;
+		document.getElementById('id1').style.color="#000000";
+	}
+	// độ ẩm 
+	var ma=30;
+	var mi = 90;
+	var hum=Math.floor(Math.random() * (ma-mi))+mi;
+
+	if (hum<=90 && hum >70) {
+		document.getElementById('hum1').style.background="#220000";
+		document.getElementById('da').style.color="white";
+		document.getElementById('id2').innerHTML=hum + " " + "%";
+		document.getElementById('id2').style.color="white";
+	}
+	if (hum<=70 && hum>50) {
+		document.getElementById('hum1').style.background="#990000";
+		document.getElementById('da').style.color="white";
+		document.getElementById('id2').innerHTML=hum + " " + "%";
+		document.getElementById('id2').style.color="white";
+	}
+	if (hum<=50 && hum>30) {
+		document.getElementById('hum1').style.background="#FFFF99";
+		document.getElementById('da').style.color="#111111";
+		document.getElementById('id2').innerHTML=hum + " " + "%";
+		document.getElementById('id2').style.color="#111111";
+	}
+
+	//ánh sáng 
+	var m=20;
+	var minn=60;
+	var light=Math.floor(Math.random()*(m-minn)+minn);
+
+	if (light<=60 && light >40) {
+		document.getElementById('as1').style.background="#220000";
+		document.getElementById('light').style.color="white";
+		document.getElementById('id3').innerHTML=light;
+		document.getElementById('id3').style.color="white";
+	}
+	if (light<=40 && light>30) {
+		document.getElementById('as1').style.background="#990000";
+		document.getElementById('light').style.color="white";
+		document.getElementById('id3').innerHTML=light;
+		document.getElementById('id3').style.color="white";
+	}
+	if (light<=30 && light>20) {
+		document.getElementById('as1').style.background="#FFFF99";
+		document.getElementById('light').style.color="#111111";
+		document.getElementById('id3').innerHTML=light;
+		document.getElementById('id3').style.color="#111111";
+	}
+	//nút bấm 
+	function Off()
+	{
+		document.getElementById('off').style.background="red";
+		document.getElementById('on').style.background="#336633";
+	}
+	function On()
+	{
+		document.getElementById('on').style.background="blue";
+		document.getElementById('off').style.background="#336633";
+	}
+		
+</script>
+</html>
